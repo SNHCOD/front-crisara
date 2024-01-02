@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+}
+ 
+/* Track */
+::-webkit-scrollbar-track {
+    background: #d3d3d3;
+    border-radius: 5px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #a3a3a3;
+    border-radius: 5px;
+}
+ 
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #747474;
+}
+
+.fadeIn {
+  z-index: 1;
+  transition: opacity 0.7s ease-in-out;
+}
+
+.fadeOut {
+  z-index: 0;
+  transition: opacity 0.7s ease-in-out;
+}

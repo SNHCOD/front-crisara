@@ -93,7 +93,7 @@ const customer = getUserdata();
                     <label
                         class="peer-checked:border-2 peer-checked:border-default peer-checked:bg-white flex cursor-pointer select-none rounded-lg border border-gray-300 p-4"
                         for="radio_1">
-                        <img class="w-14 object-contain" src="/images/naorrAeygcJzX0SyNI4Y0.png" alt="" />
+                       <!--img class="w-14 object-contain" src="/images/naorrAeygcJzX0SyNI4Y0.png" alt="" /-->
                         <div class="ml-5">
                             <span class="mt-2 font-semibold">Retiro</span>
                         </div>
@@ -106,7 +106,7 @@ const customer = getUserdata();
                     <label
                         class="peer-checked:border-2 peer-checked:border-default peer-checked:bg-white flex cursor-pointer select-none rounded-lg border border-gray-300 p-4"
                         for="radio_2">
-                        <img class="w-14 object-contain" src="/images/oG8xsl3xsOkwkMsrLGKM4.png" alt="" />
+                        <!--img class="w-14 object-contain" src="/images/oG8xsl3xsOkwkMsrLGKM4.png" alt="" /-->
                         <div class="ml-5">
                             <span class="mt-2 font-semibold">Envío</span>
                         </div>

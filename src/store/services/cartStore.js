@@ -19,15 +19,19 @@ export const useCartStore = defineStore('cart', {
     },
     increaseQuantity(productId, amount) {
       this.loadCart();
-      const existingProduct = this.cart.find((item) => item.PRODUCTO === productId);
+      const existingProduct = this.cart.items.find((item) => item.idProduct === productId);
 
       if (existingProduct) {
-        existingProduct.quantity += amount;
+        existingProduct.quantity = parseInt(existingProduct.quantity) + amount;
         this.saveCart();
       }
     },
     removeFromCart(productId) {
       this.cart = this.cart.filter((product) => product.PRODUCTO !== productId);
+      this.saveCart();
+    },
+    replaceCart(cart) {
+      this.cart = cart;
       this.saveCart();
     },
     clearCart() {

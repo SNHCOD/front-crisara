@@ -9,7 +9,7 @@ import { useSessionStore } from '@/store/services/sessionStore';
 // Definición de datos
 const { login, clearSession, saveSession, loadSession, getSession } = useSessionStore();
 const open = ref(false);
-    const router = useRouter()
+const router = useRouter()
 
 // Definición de ciclo de vida
 
@@ -19,7 +19,7 @@ const toggleOpen = () => {
 }
 const logout = () => {
     clearSession();
-    router.push('/'); // Reloads the current page
+    window.location.href = "/";
 }
 </script>
 

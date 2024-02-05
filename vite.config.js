@@ -13,4 +13,7 @@ export default defineConfig({
       '@': '/src'
     },
   },
+  optimizeDeps: {
+    exclude: ['bcrypt']
+  }
 });

@@ -9,11 +9,6 @@ import { FwbInput, FwbSelect } from 'flowbite-vue'
 // Definición de datos
 // Datos de comportamiento
 const { shippings } = defineProps(['shippings']);
-const countries = [
-  { value: '14', name: 'United States' },
-  { value: '3', name: 'Canada' },
-  { value: '555', name: 'MEXICO' },
-]
 
 // Datos de persistencia
 
@@ -31,7 +26,7 @@ onMounted(() => {
 <template>
 
 
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg max-h-[30rem] h-[30rem]">
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 ">
         <thead class="text-xs text-white uppercase bg-default">
             <tr>
@@ -71,7 +66,7 @@ onMounted(() => {
             </tr>
         </thead>
         <tbody>
-            <tr v-for="shipp in shippingsData" :key="shipp.no_venta" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50">
+            <tr v-for="shipp in shippingsData" :key="shipp.no_venta" class="bg-white border-b hover:bg-gray-50">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                     {{ shipp.no_venta }}
                 </th>

@@ -7,13 +7,14 @@ import Category from '@/pages/category/Category.vue';
 import Contact from '@/pages/contact/Contact.vue';
 import Checkout from '@/pages/checkout/Checkout.vue';
 import Deliver from '@/pages/deliver/Deliver.vue';
+import ForgotPassword from '@/pages/forgotPassword/ForgotPassword.vue';
 import Home from '@/pages/index/Home.vue';
 import Product from '@/pages/product/Product.vue';
 import Products from '@/pages/products/Products.vue';
 import Profile from '@/pages/profile/Profile.vue';
 import Promotions from '@/pages/promotions/Promotions.vue';
+import ResetPassword from '@/pages/resetPassword/ResetPassword.vue';
 import Search from '@/pages/search/Search.vue';
-
 const routes = [
   {
     path: '/about',
@@ -51,6 +52,11 @@ const routes = [
     name: 'Deliver',
   },
   {
+    path: '/forgetPassword',
+    component: ForgotPassword,
+    name: 'ForgotPassword',
+  },
+  {
     path: '/',
     component: Home,
     name: 'Home',
@@ -74,6 +80,11 @@ const routes = [
     path: '/promotions',
     component: Promotions,
     name: 'Promotions',
+  },
+  {
+    path: '/resetPassword',
+    component: ResetPassword,
+    name: 'ResetPassword',
   },
   {
     path: '/search',

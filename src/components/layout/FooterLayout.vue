@@ -94,8 +94,7 @@ function showModal (theme) {
                 </h2>
                 <div class="text-white max-w-xs">
                     <span class="leading-loose">
-                        Av. México # 3300 Local 11-A Zona C Guadalajara, Jalisco. México. CP. 44670
-                        Tél. 33.2646.9699
+                        Fabricantes directo con la mejor experiencia para envios online
                     </span>
                 </div>
             </div>
@@ -104,12 +103,19 @@ function showModal (theme) {
                     Horario
                 </h2>
                 <div class="text-white max-w-xs">
-                    <p class="leading-loose">
-                        Lunes a Viernes de 9:00 a.m. a 6:00 p.m.
+                    <p class="leading-loose font-semibold text-lg">
+                        Venta pagina web
                     </p>
                     <p class="leading-loose">
-                        Sábado de 9:00 a.m. a 2:00 p.m.
-
+                        Lunes a viernes 9:00 am a 6:00pm
+                    </p>
+                </div>
+                <div class="text-white max-w-xs">
+                    <p class="leading-loose font-semibold text-lg">
+                        Venta personalizada
+                    </p>
+                    <p class="leading-loose">
+                        Lunes a viernes 10:00 am a 3:00pm
                     </p>
                 </div>
             </div>

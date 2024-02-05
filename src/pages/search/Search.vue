@@ -1,7 +1,8 @@
 <script setup>
 // Importar funcionalidades | utilidades
-import { ref, onMounted } from 'vue';
-import ListProductsUseCase from '@/useCases/ListProductsUseCase';
+import { ref, defineAsyncComponent } from 'vue';
+import { useRoute } from 'vue-router';
+import ProductService from '@/services/ProductService';
 
 // Importar componentes
 import AppLayout from '@/components/layout/AppLayout.vue';
@@ -15,27 +16,32 @@ import ToggleList from '@/components/UI/ToggleList.vue';
 const loading = ref(true);
 const mode = ref('g');
 const products = ref([]);
-const path = window.location.href.split('-');
-const page = path[1];
-const param = path[2];
+const pagination = ref([]);
+const route = useRoute();
+const page = route.query.page;
+const search = route.query.search;
+// Definir el componente asincrónico
+const Pagination = defineAsyncComponent(() => importAsyncComponent());
 
 // Definición de ciclo de vida
-onMounted(() => {
-  loadData();
-});
+
+// Definición de métodos// Definición de métodos
+// Función asincrónica para importar el componente
+const importAsyncComponent = async () => {
+  // Puedes realizar alguna lógica asíncrona aquí
+  await loadData();
+
+  // Importar el componente dinámicamente
+  const Pagination = await import('@/components/UI/Pagination.vue');
+  loading.value = false;
+  return Pagination.default; // Asegúrate de ajustar la ruta y el nombre del componente
+};
 
 // Definición de métodos
-const loadData = () => {  
-    loading.value = true;
-    ListProductsUseCase.executeByParam(page, param)
-    .then(response => {
-        products.value = response.data.products;
-        loading.value = false;
-    })
-    .catch(error => {
-      console.error('Error loading products:', error);
-      loading.value = false;
-    });
+const loadData = async () => {  
+  const response = await ProductService.getProductsByParam(page, search);
+  products.value = response.data.products;
+  pagination.value = response.data.pagination;
 };
 
 const receiveToggle = (newMode) => {
@@ -53,10 +59,11 @@ const receiveToggle = (newMode) => {
       </div>
       <GridList v-show="mode == 'g'" :items="products" />
       <StackList v-show="mode == 's'" :items="products" />
+      <Pagination v-show="products.length > 0 && !loading" :total="pagination.total" :perPage="pagination.per_page" :countPages="pagination.total_pages" :links="pagination.links" prefix="search" />
     </div>
     <div v-show="(!loading && products.length == 0)" class="w-5/6 p-10 mx-auto mt-5">  
       <EmptyResults>
-        No hay productos relacionados con {{ decodeURIComponent(param) }}
+        No hay productos en la categoría seleccionada
       </EmptyResults>
     </div>    
 </AppLayout>

@@ -1,6 +1,6 @@
 <script setup>
 // Importar funcionalidades | utilidades
-import { ref, defineProps, watch } from 'vue';
+import { defineProps } from 'vue';
 
 // Importar componentes
 import AddToCart from '@/components/UI/AddToCart.vue';
@@ -46,7 +46,7 @@ const { product } = defineProps(['product']);
                 </div>
             </a>
             <div class="w-5/6 mx-auto mt-0 mb-5">
-                <AddToCart :product="product" />
+                <AddToCart :product="product" quantity="1" />
             </div>
         </div>
 </template>

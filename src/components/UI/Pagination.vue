@@ -32,7 +32,7 @@ const props = defineProps(['total', 'perPage', 'countPages', 'links', 'prefix'])
                 </svg>
                 <span>Anterior</span>
                 </a>
-                <a v-for="(link, index) in props.links && props.links.pages" :href="'/' + props.prefix + '/?page=' + link" :class="'relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300  focus:z-20 focus:outline-offset-0 ' + (props.links && props.links.current_page == link ? 'bg-default text-white' : ' hover:bg-default hover:text-white')">{{ link.substr(0, 1) }}</a>
+                <a v-for="(link, index) in props.links && props.links.pages" :href="'/' + props.prefix + '?page=' + link" :class="'relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300  focus:z-20 focus:outline-offset-0 ' + (props.links && props.links.current_page == link.substr(0, 1) ? 'bg-default text-white' : ' hover:bg-default hover:text-white')">{{ link.substr(0, 1) }}</a>
                 <a :href="props.links && props.links.next_page" :class="'relative inline-flex items-center rounded-r-md px-2 py-2 text-black ring-1 ring-inset ring-gray-300 hover:bg-default hover:text-white focus:z-20 focus:outline-offset-0 ' + (props.links && props.links.next_page ? '' : 'pointer-events-none opacity-50 cursor-not-allowed') ">
                     <span class="sr-only">Siguiente</span>
                     <span>Siguiente</span>

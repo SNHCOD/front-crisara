@@ -1,7 +1,7 @@
 <script setup>
 // Importar funcionalidades | utilidades
 import { ref, onMounted, defineAsyncComponent } from 'vue';
-import ListProductsUseCase from '@/useCases/ListProductsUseCase';
+import ProductService from '@/services/ProductService';
 
 // Importar componentes
 import AppLayout from '@/components/layout/AppLayout.vue';
@@ -13,11 +13,6 @@ const bestSeller = ref([]);
 const newer = ref([]);
 const preview = ref([]);
 const loading = ref(true);
-const pictures = [
-  { src: 'https://picsum.photos/200/300?random=1', alt: 'Image 1' },
-  { src: 'https://picsum.photos/200/300?random=2', alt: 'Image 2' },
-  { src: 'https://picsum.photos/200/300?random=3', alt: 'Image 3' },
-]
 // Definir el componente asincrónico
 const SliderMultiItems = defineAsyncComponent(() => importAsyncComponent());
 
@@ -40,7 +35,7 @@ const importAsyncComponent = async () => {
 
 
 const loadData = async () => {  
-  await ListProductsUseCase.executeBestSeller()
+  await ProductService.getBestSeller()
     .then(response => {
       bestSeller.value = response.data;
     })
@@ -48,7 +43,7 @@ const loadData = async () => {
       console.error('Error loading products:', error);
     });
 
-  await ListProductsUseCase.executeNewer()
+  await ProductService.getNewer()
     .then(response => {
       newer.value = response.data;
     })
@@ -56,7 +51,7 @@ const loadData = async () => {
       console.error('Error loading products:', error);
     });
 
-  await ListProductsUseCase.executePreview()
+  await ProductService.getPreview()
     .then(response => {
       preview.value = response.data;
     })
@@ -86,7 +81,7 @@ const loadData = async () => {
       <SliderMultiItems :items="preview" />
       <SkeletonLoading v-show="loading" />
       <div v-show="!loading" class="w-1/5 mx-auto mt-5">
-        <a href="/products/?page=1"
+        <a href="/products?page=1"
             class="block w-full rounded bg-default text-white p-4 text-sm font-medium transition hover:scale-105 text-center">
             Ver todos
         </a>

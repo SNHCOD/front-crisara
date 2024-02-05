@@ -5,6 +5,7 @@ import ListCategoriesUseCase from '@/useCases/ListCategoriesUseCase';
 import ListProductsUseCase from '@/useCases/ListProductsUseCase';
 import { navLinks } from '@/utils/navLinks';
 import { useSessionStore } from '@/store/services/sessionStore';
+import { useSettingsStore } from '@/store/services/settingsStore';
 
 // Importar componentes
 import DropDownMenu from '@/components/UI/DropDownMenu.vue';
@@ -14,32 +15,22 @@ import Loader from '@/components/UI/Loader.vue';
 
 // Definición de datos
 const { logged } = useSessionStore();
+const { getCategories } = useSettingsStore();
 const session = logged();
 const openMenu = ref(false);
 const loading = ref(false);
-const categories = ref([]);
+const categories = ref(getCategories());
 const products = ref([]);
 const param = ref('');
 
 // Definición de ciclo de vida
-onMounted(() => {
-  loadData();
-});
 
 // Definición de métodos
-const loadData = () => {  
-  ListCategoriesUseCase.execute()
-    .then(response => {
-      categories.value = response.data;
-    })
-    .catch(error => {
-      console.error('Error loading categories:', error);
-    });
-};
+
 
 // Función para manejar el evento 'Enter' en el campo de entrada
 const search = (page) => {    
-    window.location.href = '/search/?conf=-' + page + '-' + String(param.value); // Reemplaza 'NUEVA_URL' con la URL a la que deseas redirigir
+    window.location.href = '/search?page=' + page + '&search=' + String(param.value); // Reemplaza 'NUEVA_URL' con la URL a la que deseas redirigir
 
     loading.value = true;
     ListProductsUseCase.executeByParam(page, param)

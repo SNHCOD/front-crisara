@@ -12,7 +12,6 @@ const Card = defineAsyncComponent(() => importAsyncComponent());
 const importAsyncComponent = async () => {
   // Puedes realizar alguna lógica asíncrona aquí
   await loadData();
-    console.log('a');
 
   // Importar el componente dinámicamente
   const Card = await import('@/components/UI/Card.vue');

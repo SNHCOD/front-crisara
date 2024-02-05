@@ -21,7 +21,7 @@ const props = defineProps(['categories']);
             :class="'z-50 w-full max-w-5xl bg-white rounded-lg shadow absolute ' + (toggle ? '' : 'hidden')">
             <div class="flex flex-wrap gap-2 p-3" v-on:mouseleave="toggle = !toggle">
                 <div class="min-w-[15rem] max-w-xs" v-for="category in categories">
-                    <a :href="'/category/?id=' + category.CategoriaID" class="text-xs capitalize hover:text-default">
+                    <a :href="'/category?id=' + category.CategoriaID" class="text-xs capitalize hover:text-default">
                         {{ category.Descripcion }}
                     </a>
                 </div>

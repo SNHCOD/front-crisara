@@ -13,7 +13,9 @@ export default {
       },
 },
     colors: {
-      default: '#db2471'
+      default: '#db2471',
+      error: '#db2471',
+      success: '#057a55'
     }
   },
   plugins: [

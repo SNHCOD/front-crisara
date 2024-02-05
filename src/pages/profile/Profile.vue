@@ -12,8 +12,8 @@ import Shippings from '@/components/UI/Shippings.vue';
 
 // Definición de datos
 const tab = ref(0);
-const { getUserdata } = useSessionStore();
-const customer = getUserdata();
+const { getSession } = useSessionStore();
+const session = getSession();
 
 // Definición de ciclo de vida
 
@@ -58,10 +58,10 @@ const customer = getUserdata();
           </li>
       </ul>
       <div :class="'mx-auto ' + (tab == 2 ? 'w-5/6' : 'w-2/3') ">
-        <UserData v-show="tab == 0" :customer="customer.data"/>
-        <ShippingData v-show="tab == 1" :customer="customer.shipping"/>
-        <Shippings v-show="tab == 2" :shippings="customer.shippings"/>
-        <BillingData v-show="tab == 3" :customer="customer.billing"/>
+        <UserData v-show="tab == 0" :customer="session.customer.data" :token="session.token" :cats="session.customer.cats"/>
+        <ShippingData v-show="tab == 1" :customer="session.customer.shipping" :token="session.token" :client_id="session.customer.data.id" :cats="session.customer.cats"/>
+        <Shippings v-show="tab == 2" :shippings="session.customer.orders"/>
+        <BillingData v-show="tab == 3" :customer="session.customer.billing" :token="session.token" :client_id="session.customer.data.id" :cats="session.customer.cats"/>
       </div>
 </div>
 

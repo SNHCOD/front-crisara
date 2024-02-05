@@ -42,17 +42,11 @@ const setCurrentIndex = (index) => {
 };
 
 const prevSlide = () => {
-    console.log(dividedGroups.value.length);
-    console.log(currentIndex);
   currentIndex.value = (currentIndex.value - 1 + dividedGroups.value.length) % dividedGroups.value.length;
-    console.log(currentIndex);
 };
 
 const nextSlide = () => {
-    console.log(dividedGroups.value.length);
-    console.log(currentIndex);
   currentIndex.value = (currentIndex.value + 1) % dividedGroups.value.length;
-    console.log(currentIndex);
 };
 
 </script>

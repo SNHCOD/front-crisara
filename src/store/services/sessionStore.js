@@ -3,7 +3,7 @@ import { defineStore } from 'pinia';
 
 export const useSessionStore = defineStore('session', {
   state: () => ({
-    session: null,
+    session: {},
   }),
   actions: {
     login(session) {
@@ -11,7 +11,7 @@ export const useSessionStore = defineStore('session', {
       this.saveSession();
     },
     clearSession() {
-      this.session = null;
+      this.session = {};
       this.saveSession();
     },
     saveSession() {
@@ -19,7 +19,7 @@ export const useSessionStore = defineStore('session', {
     },
     loadSession() {
       const savedSession = localStorage.getItem('session');
-      this.session = savedSession? JSON.parse(savedSession) : null;
+      this.session = savedSession? JSON.parse(savedSession) : {};
     },
     getSession() {
       this.loadSession();
@@ -27,11 +27,15 @@ export const useSessionStore = defineStore('session', {
     },
     logged() {
       this.loadSession();
-      return (this.session != null);
+      return this.session.logged;
     },
     getUserdata() {
       this.loadSession();
-      return this.session.customer;
+      return (this.session.customer ? this.session.customer : null);
     },
+    getPaymentData() {
+      this.loadSession();
+      return ({'token': this.session.token, 'id': this.session.customer.data.user_id})
+    }
   },
 });

@@ -1,7 +1,8 @@
 <script setup>
 // Importar funcionalidades | utilidades
-import { ref, onMounted, defineAsyncComponent } from 'vue';
-import ListProductsUseCase from '@/useCases/ListProductsUseCase';
+import { ref, defineAsyncComponent } from 'vue';
+import { useRoute } from 'vue-router';
+import ProductService from '@/services/ProductService';
 
 // Importar componentes
 import AppLayout from '@/components/layout/AppLayout.vue';
@@ -16,8 +17,8 @@ const loading = ref(true);
 const mode = ref('g');
 const products = ref([]);
 const pagination = ref([]);
-const path = window.location.href.split('=');
-const page = path[1];
+const route = useRoute();
+const page = route.query.page;
 // Definir el componente asincrónico
 const Pagination = defineAsyncComponent(() => importAsyncComponent());
 
@@ -36,14 +37,17 @@ const importAsyncComponent = async () => {
 };
 
 const loadData = async () => {  
-  await ListProductsUseCase.execute(page)
+  const response = await ProductService.getProducts(page);
+  products.value = response.data.products;
+  pagination.value = response.data.pagination;
+  /*await ListProductsUseCase.execute(page)
     .then(response => {
       products.value = response.data.products;
       pagination.value = response.data.pagination;
     })
     .catch(error => {
       console.error('Error loading products:', error);
-    })
+    })*/
 
 };
 

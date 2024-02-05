@@ -1,7 +1,8 @@
 <script setup>
 // Importar funcionalidades | utilidades
 import { ref, onMounted, defineAsyncComponent } from 'vue';
-import ListProductsUseCase from '@/useCases/ListProductsUseCase';
+import { useRoute } from 'vue-router';
+import ProductService from '@/services/ProductService';
 
 // Importar componentes
 import AppLayout from '@/components/layout/AppLayout.vue';
@@ -12,15 +13,10 @@ import EmptyResults from '@/components/UI/EmptyResults.vue';
 const loading = ref(true);
 const mode = ref('g');
 const product = ref(null);
-const path = window.location.href.split('=');
-const id = path[1];
+const route = useRoute();
+const id = route.query.id;
 // Definir el componente asincrónico
 const ProductDetail = defineAsyncComponent(() => importAsyncComponent());
-
-// Definición de ciclo de vida
-onMounted(() => {
-  importAsyncComponent();
-})
 
 // Definición de métodos
 // Función asincrónica para importar el componente
@@ -35,14 +31,8 @@ const importAsyncComponent = async () => {
 };
 
 const loadData = async () => {  
-  await ListProductsUseCase.executeById(id)
-    .then(response => {
-      product.value = response.data;
-    })
-    .catch(error => {
-      console.error('Error loading products:', error);
-    });
-
+  const response = await ProductService.getProductsById(id);
+  product.value = response.data;
 };
 
 const receiveToggle = (newMode) => {

@@ -10,36 +10,8 @@
 
   export default {
     // Método para obtener todos los productos
-    getProducts(page) {
-      return apiClient.get('/products?page=' + page);
-    },
-    // Método para obtener productos por categorías
-    getProductsByCategory(id) {
-      return apiClient.get('/category?id=' + id);
-    },
-    // Método para obtener productos por id
-    getProductsById(id) {
-      return apiClient.get('/id?id=' + id);
-    },
-    // Método para obtener productos por parámetro
-    getProductsByParam(page, param) {
-      return apiClient.get('/products?page=' + page + '&search=' + param);
-    },
-    // Método para obtener productos más vendidos
-    getBestSeller() {
-      return apiClient.get('/bestSeller');
-    },
-    // Método para obtener productos recientes
-    getNewer() {
-      return apiClient.get('/newer');
-    },
-    // Método para obtener productos random
-    getPreview() {
-      return apiClient.get('/preview');
-    },
-    // Método para obtener productos relacionados
-    getRelated(id) {
-      return apiClient.get('/related?id=' + id);
+    pay(params) {
+      return apiClient.post('/conekta/pay', params);
     },
   };
 /*
